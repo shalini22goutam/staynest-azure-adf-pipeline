@@ -6,6 +6,11 @@
 			"referenceName": "LS_storageaccount",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"ds_filename": {
+				"type": "string"
+			}
+		},
 		"annotations": [],
 		"type": "DelimitedText",
 		"typeProperties": {
