@@ -15,7 +15,12 @@
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "Usage",
+						"value": "Copy staynest files from raw to bronze."
+					}
+				],
 				"typeProperties": {
 					"source": {
 						"type": "DelimitedTextSource",
