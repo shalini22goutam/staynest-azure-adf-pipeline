@@ -4,17 +4,23 @@
 		"description": "This is a metadata-driven that dynamically discovers and copies all files from raw to bronze directory without hardcoding file names, making the pipeline reusable for any number of files.",
 		"activities": [
 			{
-				"name": "Get Metadata1",
+				"name": "Get Metadata of source",
+				"description": "This activity return the metadata(child items) of the dataset (ds_raw_folder)",
 				"type": "GetMetadata",
 				"dependsOn": [],
 				"policy": {
 					"timeout": "0.12:00:00",
-					"retry": 0,
+					"retry": 1,
 					"retryIntervalInSeconds": 30,
 					"secureOutput": false,
 					"secureInput": false
 				},
-				"userProperties": [],
+				"userProperties": [
+					{
+						"name": "Usage",
+						"value": "Returns child items from the dataset (ds_raw_folder)"
+					}
+				],
 				"typeProperties": {
 					"dataset": {
 						"referenceName": "ds_raw_folder",
@@ -34,11 +40,12 @@
 				}
 			},
 			{
-				"name": "ForEach1",
+				"name": "Interate over source files",
+				"description": "This activity iterates over child items/csv files available in raw directory pointed by ds_raw_folder",
 				"type": "ForEach",
 				"dependsOn": [
 					{
-						"activity": "Get Metadata1",
+						"activity": "Get Metadata of source",
 						"dependencyConditions": [
 							"Succeeded"
 						]
@@ -47,27 +54,33 @@
 				"userProperties": [
 					{
 						"name": "Usage",
-						"value": "Copy csv file from raw to bronze directory."
+						"value": "Interate over source files."
 					}
 				],
 				"typeProperties": {
 					"items": {
-						"value": "@activity('Get Metadata1').output.childItems",
+						"value": "@activity('Get Metadata of source').output.childItems",
 						"type": "Expression"
 					},
 					"activities": [
 						{
-							"name": "Copy data2",
+							"name": "Copy files from raw to bronze",
+							"description": "This activity copies csv files from raw to bronze directory.",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
 								"timeout": "0.12:00:00",
-								"retry": 0,
+								"retry": 1,
 								"retryIntervalInSeconds": 30,
 								"secureOutput": false,
 								"secureInput": false
 							},
-							"userProperties": [],
+							"userProperties": [
+								{
+									"name": "Usage",
+									"value": "Copy csv file from raw to bronze directory."
+								}
+							],
 							"typeProperties": {
 								"source": {
 									"type": "DelimitedTextSource",
