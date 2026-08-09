@@ -25,6 +25,7 @@
 					],
 					"storeSettings": {
 						"type": "AzureBlobFSReadSettings",
+						"recursive": true,
 						"enablePartitionDiscovery": false
 					},
 					"formatSettings": {
@@ -102,11 +103,11 @@
 							},
 							"inputs": [
 								{
-									"referenceName": "ds_source",
+									"referenceName": "ds_meta_raw",
 									"type": "DatasetReference",
 									"parameters": {
 										"ds_filename": {
-											"value": "@item()",
+											"value": "@item().name",
 											"type": "Expression"
 										}
 									}
@@ -114,7 +115,7 @@
 							],
 							"outputs": [
 								{
-									"referenceName": "ds_sink",
+									"referenceName": "ds_meta_bronze",
 									"type": "DatasetReference"
 								}
 							]
