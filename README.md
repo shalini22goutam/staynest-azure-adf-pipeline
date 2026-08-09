@@ -26,7 +26,7 @@ The pipelines use the following Azure Data Factory activities:
 - **Get Metadata** – Retrieves metadata from the source folder, specifically the `childItems` used to identify the files available for processing.
 - **ForEach** – Iterates over the files returned by the Get Metadata activity and processes each file dynamically.
 
-## Activities in `stay_data_pipeline`
+## Activities in `staynest_data_pipeline`
 
 The **Copy Data** activity copies a file from the source dataset, which directly points to a specific CSV file, and loads it into the Bronze folder.
 
