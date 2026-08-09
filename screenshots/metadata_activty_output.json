@@ -1,0 +1,31 @@
+{
+	"childItems": [
+		{
+			"name": "bookings.csv",
+			"type": "File"
+		},
+		{
+			"name": "customers.csv",
+			"type": "File"
+		},
+		{
+			"name": "hotels.csv",
+			"type": "File"
+		}
+	],
+	"effectiveIntegrationRuntime": "AutoResolveIntegrationRuntime (Central India)",
+	"executionDuration": 0,
+	"durationInQueue": {
+		"integrationRuntimeQueue": 9
+	},
+	"billingReference": {
+		"activityType": "PipelineActivity",
+		"billableDuration": [
+			{
+				"meterType": "AzureIR",
+				"duration": 0.016666666666666666,
+				"unit": "Hours"
+			}
+		]
+	}
+}
