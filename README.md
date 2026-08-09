@@ -2,6 +2,30 @@
 
 The objective of this project is to built a metadata-driven Azure Data Factory (ADF) pipeline for the StayNest hotel booking platform to automate ingestion of CSV files from the Raw layer to the Bronze layer in Azure Data Lake Storage Gen2. This project demonstrates usage of Linked Services, Datasets, Copy Activity, Get Metadata, and ForEach activities.
 
+## Linked Service and Datasets
+
+### Linked Service
+
+`LS_storageaccount` - The linked service is used to establish a connection between Azure Data Factory and the Azure Data Lake Storage Gen2 account.
+
+### Datasets
+
+The following datasets are used in the pipelines:
+
+- `ds_source` – Source dataset that points to a specific CSV file in the `raw` folder.
+- `ds_sink` – Sink dataset that points to the `bronze` folder.
+- `ds_raw_folder` – Dataset that points to the `raw` folder and is used by the Get Metadata activity.
+- `ds_meta_raw` – Parameterized source dataset used to dynamically select files from the `raw` folder.
+- `ds_meta_bronze` – Destination dataset that points to the `bronze` folder.
+
+### Activities Used
+
+The pipelines use the following Azure Data Factory activities:
+
+- **Copy Data** – Copies files from the `raw` folder to the `bronze` folder.
+- **Get Metadata** – Retrieves metadata from the source folder, specifically the `childItems` used to identify the files available for processing.
+- **ForEach** – Iterates over the files returned by the Get Metadata activity and processes each file dynamically.
+
 ## Activities in `stay_data_pipeline`
 
 The **Copy Data** activity copies a file from the source dataset, which directly points to a specific CSV file, and loads it into the Bronze folder.
